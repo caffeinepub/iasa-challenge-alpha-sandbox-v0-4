@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* IASA Dark HUD — design spec palette */
+    --background: 0.07 0.008 250;
+    --foreground: 0.96 0.005 240;
+    --card: 0.14 0.013 245;
+    --card-foreground: 0.96 0.005 240;
+    --popover: 0.13 0.012 245;
+    --popover-foreground: 0.96 0.005 240;
+    --primary: 0.41 0.1 240;
+    --primary-foreground: 0.96 0.005 240;
+    --secondary: 0.14 0.013 245;
+    --secondary-foreground: 0.77 0.015 240;
+    --muted: 0.16 0.012 245;
+    --muted-foreground: 0.77 0.015 240;
+    --accent: 0.45 0.1 210;
+    --accent-foreground: 0.96 0.005 240;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.96 0.005 240;
+    --border: 0.24 0.018 245;
+    --input: 0.18 0.013 245;
+    --ring: 0.41 0.1 240;
+    --chart-1: 0.41 0.1 240;
+    --chart-2: 0.72 0.19 145;
+    --chart-3: 0.769 0.188 70.08;
+    --chart-4: 0.627 0.265 303.9;
+    --chart-5: 0.645 0.246 16.439;
+    --sidebar: 0.1 0.01 245;
+    --sidebar-foreground: 0.96 0.005 240;
+    --sidebar-primary: 0.41 0.1 240;
+    --sidebar-primary-foreground: 0.96 0.005 240;
+    --sidebar-accent: 0.16 0.012 245;
+    --sidebar-accent-foreground: 0.96 0.005 240;
+    --sidebar-border: 0.24 0.018 245;
+    --sidebar-ring: 0.41 0.1 240;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", system-ui, sans-serif;
+    background: radial-gradient(
+      ellipse at 50% 0%,
+      oklch(0.11 0.018 245) 0%,
+      oklch(0.07 0.008 250) 60%
+    );
+    min-height: 100vh;
+  }
+}
+
+/* Network / tech dot grid pattern */
+.network-grid {
+  background-image: radial-gradient(
+    circle,
+    oklch(0.96 0.005 240 / 0.08) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+  background-position: 0 0;
+}
+
+/* Vignette overlay */
+.vignette::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    oklch(0.05 0.006 250 / 0.75) 100%
+  );
+  z-index: 0;
+}
+
+/* Teal glow for nav pill */
+.pill-glow {
+  box-shadow: 0 0 0 1px oklch(0.24 0.018 245), 0 8px 32px
+    oklch(0.05 0.006 250 / 0.6);
+}
+
+/* Blue CTA button */
+.btn-primary-blue {
+  background: linear-gradient(135deg, oklch(0.41 0.1 240), oklch(0.36 0.09 240));
+  box-shadow: 0 0 14px oklch(0.41 0.1 240 / 0.4), 0 0 28px
+    oklch(0.41 0.1 240 / 0.2), inset 0 1px 0 oklch(0.96 0.005 240 / 0.08);
+}
+
+.btn-primary-blue:hover {
+  background: linear-gradient(135deg, oklch(0.45 0.11 240), oklch(0.41 0.1 240));
+  box-shadow: 0 0 20px oklch(0.41 0.1 240 / 0.6), 0 0 40px
+    oklch(0.41 0.1 240 / 0.3), inset 0 1px 0 oklch(0.96 0.005 240 / 0.1);
+}
+
+/* Blue outline button (nav) */
+.btn-outline-blue {
+  border: 1px solid oklch(0.41 0.1 240 / 0.6);
+  color: oklch(0.77 0.07 240);
+  box-shadow: 0 0 8px oklch(0.41 0.1 240 / 0.15);
+}
+
+.btn-outline-blue:hover {
+  background: oklch(0.41 0.1 240 / 0.12);
+  border-color: oklch(0.41 0.1 240);
+  box-shadow: 0 0 14px oklch(0.41 0.1 240 / 0.3);
+}
+
+/* Green approved button */
+.btn-green {
+  background: linear-gradient(
+    135deg,
+    oklch(0.72 0.19 145 / 0.15),
+    oklch(0.72 0.19 145 / 0.08)
+  );
+  border: 1px solid oklch(0.72 0.19 145 / 0.6);
+  color: oklch(0.72 0.19 145);
+  box-shadow: 0 0 14px oklch(0.72 0.19 145 / 0.3), 0 0 28px
+    oklch(0.72 0.19 145 / 0.15);
+}
+
+.btn-green:hover {
+  background: oklch(0.72 0.19 145 / 0.2);
+  box-shadow: 0 0 20px oklch(0.72 0.19 145 / 0.5), 0 0 40px
+    oklch(0.72 0.19 145 / 0.25);
+}
+
+/* Countdown digit tiles */
+.digit-tile {
+  background: oklch(0.11 0.012 245);
+  border: 1px solid oklch(0.24 0.018 245);
+  box-shadow: inset 0 1px 0 oklch(0.96 0.005 240 / 0.04), 0 4px 16px
+    oklch(0.05 0.006 250 / 0.6);
+}
+
+.digit-glow {
+  text-shadow: 0 0 16px oklch(0.77 0.015 240 / 0.7);
+}
+
+/* Teal accent glow */
+.teal-glow {
+  box-shadow: 0 0 20px oklch(0.45 0.1 210 / 0.3), 0 0 60px
+    oklch(0.45 0.1 210 / 0.1);
+}
+
+/* Admin bar */
+.admin-bar {
+  background: linear-gradient(
+    to right,
+    oklch(0.13 0.012 245),
+    oklch(0.14 0.013 245)
+  );
+  border-bottom: 1px solid oklch(0.41 0.1 240 / 0.2);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(0.09 0.01 250);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.24 0.018 245);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.3 0.02 245);
+}
